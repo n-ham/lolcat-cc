@@ -75,7 +75,11 @@ The results are in the following table:
 
 ## lolcat-cc output from shell 
 
-The developer of `lolcat-cc` also created and develops [Nift](https://nift.dev) which has an in-built shell extension you can start with `nift sh` then you can turn on lolcat-cc output, including for tab completion, using [lolcat.on](https://nift.dev/docs/fns/lolcat.on.html).
+The developer of `lolcat-cc` also created and develops [Nift](https://nift.dev) which has an in-built shell extension you can start with `nift sh` then you can turn on lolcat-cc output, including for tab completion suggestions, using [lolcat.on](https://nift.dev/docs/fns/lolcat.on.html).
+
+## known limitations
+
+Running ascii animations through `lolcat-cc` does not seem to work very well most of the time, and often requires closing and opening a new terminal session when you do. Fixes are welcome, though may require having two versions if there is a significant reduction in speed. 
 
 ![](./rainbow-lion.png)
 
