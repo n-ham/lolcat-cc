@@ -43,23 +43,23 @@ $ make && sudo make install
 
 ## Why?
 
-This `lolcat` clone was mostly to add limited rainbow support for Windows. It's also \~2x as fast as lolcat-c and over 60 times faster than the original ruby version, and has a formatted option for things like not messing up emojis, some utf-8 characters, cleared lines, stripping unix colour codes etc..
+This `lolcat` clone was mostly to add limited rainbow support for Windows. It seems to be about twice as fast as `lolcat-c` on speed, both of which are an an entirely different league speed-wise compared to the original ruby version.
 
 To benchmark them, an empty directory was filled with 100k files named `x.txt` where `x` goes from `1` to `100000`. From within the directory the following commands were run:
 
 ```bash
 ls -l | time lolcat
 ls -l | time lolcat-c
-ls -l | time lolcat-cc
+ls -l | time lolcat-cc -f
 ```
 
 The results are in the following table:
 
 | Tables           | lolcat(rb) | lolcat-c   | lolcat-cc  |
 | ---------------- | ----------:| ----------:| ----------:|
-| user             | 152.61     | 1.97       | 0.40       |
-| system           | 17.05      | 0.39       | 0.38       |
-| elapsed          | 2:50.36    | 0:04:93    | 0:02:76    |
+| user             | 152.61     | 1.73       | 0.80       |
+| system           | 17.05      | 0.35       | 0.35       |
+| elapsed          | 2:50.36    | 0:04:20    | 0:03.39    |
 | CPU              | 99%        | 48%        | 26%        |
 | max resident     | 10228      | 19232      | 3396       |
 | inputs           | 144        | 0          | 0          |
@@ -68,8 +68,6 @@ The results are in the following table:
 | rb elapsed ratio | 1.0        | 0.0289     | 0.0162     |
 | c elapsed ratio  | 34.5558    | 1.0        | 0.5598     |
 | cc elapsed ratio | 61.7246    | 1.7862     | 1.0        |
-
-(I accidentally compared the user times in a previous commit)
 
 (Read: ```lolcat-cc << lolcat-c << lolcat```)
 
