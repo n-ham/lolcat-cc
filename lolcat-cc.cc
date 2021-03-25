@@ -195,12 +195,12 @@ int lolcat(std::istream& is)
 				if(format)
 				{   //https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 					while(i < inLine.size() && (inLine[i] == '\\' || 
-						                        inLine[i] == '\x0' || 
-						                        //inLine[i] == "\e" ||
-						                        inLine[i] == '\033' ||         // octag
-						                        inLine.substr(i, 2) == "^[" || // ctrl key
-						                        inLine[i] == '\x1b' ||         // hexadecimal
-						                        inLine[i] == '\u001b'))        // unicode
+					                            inLine[i] == '\x0' || 
+					                            //inLine[i] == "\e" ||
+					                            inLine[i] == '\033' ||         // octag
+					                            inLine.substr(i, 2) == "^[" || // ctrl key
+					                            inLine[i] == '\x1b' ||         // hexadecimal
+					                            inLine[i] == '\u001b'))        // unicode
 					{
 						int start = i++;
 						while(i < inLine.size() && inLine[i] != ' ' && inLine[i] != '\n' && inLine[i] != '\t')
