@@ -1,5 +1,7 @@
 # 🌈 What?
 
+![](./lolcat-cc.png)
+
 ![](./rainbow-cat.png)
 
 ## Usage 
