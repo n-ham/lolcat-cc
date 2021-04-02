@@ -1,7 +1,5 @@
 # 🌈 What?
 
-![](./lolcat-cc.png)
-
 ![](./mascot.png)
 
 ## Usage 
