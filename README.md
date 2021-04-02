@@ -2,7 +2,7 @@
 
 ![](./lolcat-cc.png)
 
-![](./rainbow-cat.png)
+![](./mascot.png)
 
 ## Usage 
 ```bash
@@ -35,6 +35,9 @@ which writes output to the terminal with rainbow colours
 ![](./screenshot-windows.png)
 
 ## Installation
+
+![](./rainbow-cat.png)
+
 ### From Source
 
 ```bash
