@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <fstream>
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <sstream>
 #include <string>
 #include <sys/stat.h>
@@ -144,8 +144,6 @@ size_t width, cWidth;
 bool addLineNo = 0, zigzag = 0;
 int posGrad = 1;
 
-const std::string arr = "⥤";
-
 int lolcat(std::istream& is)
 {
 	std::string inLine;
@@ -196,27 +194,17 @@ int lolcat(std::istream& is)
 			{
 				if(format)
 				{
-					for(size_t j=1; j<4; ++j)
+					while(inLine[i] == '\t')
 					{
-						if(j < 3 && i+width-j < inLine.size() && inLine[i+width-j] == arr[0])
-						{ //checks for multi-char utf characters
-							std::cout << colors[color] << inLine.substr(i, width+3-j);
-							i += width+3-j;
-							break;
-						}
-						else if(i+width-j < inLine.size() && (inLine[i+width-j] == '\xF0' ||
-							                                  inLine[i+width-j] == '\xE2' ||
-							                                  inLine[i+width-j] == '\xC2'))
-						{ //checks for emojis
-							std::cout << colors[color] << inLine.substr(i, width+4-j);
-							i += width+4-j;
-							break;
-						}
+						std::cout << std::string(tabWidth, ' ');
+						++i;
 					}
 
 				    //https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
-					while(i < inLine.size() && ((inLine[i] == '\\' && (!i || inLine[i-1] != '\\')) || 
-					                            inLine[i] == '\x0' || 
+					while(format && i < inLine.size() && ((inLine[i] == '\\' && (!i || inLine[i-1] != '\\')) || 
+					                            inLine[i] == '\x0' ||
+					                            inLine[i] == '\xB0' ||         // degree
+					                            inLine.substr(i, 2) == "°" ||  // degree
 					                            inLine[i] == '\xF0' ||         // emojis
 					                            inLine[i] == '\xE2' ||         // emojis
 					                            inLine[i] == '\xC2' ||         // emojis
@@ -227,12 +215,17 @@ int lolcat(std::istream& is)
 					                            inLine[i] == '\u001b'))        // unicode
 					{
 						int start = i++;
-						while(i < inLine.size() && inLine[i] != 'm' && 
+						while(i < inLine.size() && /*inLine[i] != 'm' && */
+						                           inLine[i] != -80 && 
+						                           inLine[i] != -92 && 
                                                    inLine[i] != ' ' && 
                                                    inLine[i] != '\n' && 
                                                    inLine[i] != '\t')
 							++i;
 						std::cout << inLine.substr(start, i-start);
+						
+						if(inLine[i] == ' ')
+							std::cout << colors[color];
 					}
 				}
 
@@ -245,6 +238,10 @@ int lolcat(std::istream& is)
 			color=(color+1)%noColors;
 			std::cout << colors[color];
 		}
+
+
+		if(&is == &std::cin)
+			std::cout << c_white;
 
 		std::cout << std::endl;
 		++lineNo;
@@ -355,7 +352,7 @@ int main(int argc, char ** argv)
 		else if(param == "-v" || param == "-version")
 		{
 			std::stringstream ss;
-			ss << "v1.0.0" << std::endl;
+			ss << "v1.0.1" << std::endl;
 
 			return lolfilter(ss);
 		}

@@ -46,7 +46,7 @@ $ make && sudo make install
 
 ## Why?
 
-This `lolcat` clone was mostly to add limited rainbow support for Windows. It seems to be about twice as fast as `lolcat-c` on speed, both of which are an an entirely different league speed-wise compared to the original ruby version.
+This `lolcat` clone was mostly to add limited rainbow support for Windows. Plus it was fun to do my own implementation and it's always nice to win "world's fastest" pissing contests. 
 
 To benchmark them, an empty directory was filled with 100k files named `x.txt` where `x` goes from `1` to `100000`. From within the directory the following commands were run:
 
